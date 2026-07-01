@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meridian Roasting Co. — Single-Origin Coffee, Roasted in Small Batches</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14100D;
+    --surface: #1D1710;
+    --surface-2: #241C13;
+    --line: #33291B;
+    --cream: #F2E9DD;
+    --muted: #9C8C77;
+    --copper: #C9814F;
+    --copper-dim: #8A5A38;
+    --rust: #6B3A2C;
+  }
+  html { scroll-behavior: smooth; background: var(--bg); }
+  body { background: var(--bg); color: var(--cream); font-family: 'Work Sans', sans-serif; }
+  .font-display { font-family: 'Fraunces', serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .curve-path {
+    stroke-dasharray: 1400;
+    stroke-dashoffset: 1400;
+    animation: draw 2.6s ease-out forwards 0.4s;
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  .dot-anim {
+    opacity: 0;
+    animation: dotIn 0.5s ease-out forwards;
+  }
+  @keyframes dotIn { to { opacity: 1; } }
+
+  .grain::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: radial-gradient(rgba(242,233,221,0.035) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events: none;
+  }
+
+  ::selection { background: var(--copper); color: #14100D; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curve-path { animation: none; stroke-dashoffset: 0; }
+    .dot-anim { animation: none; opacity: 1; }
+    .reveal { transition: none; opacity: 1; transform: none; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--copper);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--line)] bg-[var(--bg)]/90 backdrop-blur-sm">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+    <a href="#top" class="font-display text-lg tracking-wide text-[var(--cream)]">Sabin<span class="text-[var(--copper)]">.</span></a>
+    <nav class="hidden md:flex items-center gap-10 font-mono text-xs uppercase tracking-[0.15em] text-[var(--muted)]">
+      <a href="#origins" class="hover:text-[var(--copper)] transition-colors">Origins</a>
+      <a href="#process" class="hover:text-[var(--copper)] transition-colors">Roast Process</a>
+      <a href="#visit" class="hover:text-[var(--copper)] transition-colors">Visit</a>
+    </nav>
+    <a href="#visit" class="font-mono text-xs uppercase tracking-[0.15em] border border-[var(--copper-dim)] text-[var(--copper)] px-4 py-2 rounded-full hover:bg-[var(--copper)] hover:text-[var(--bg)] transition-colors">
+      Order beans
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative pt-40 pb-24 md:pt-52 md:pb-32 px-6 md:px-10 overflow-hidden">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <div>
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--copper)] mb-6">Small-batch roastery — est. Kathmandu, 27°42'N</p>
+      <h1 class="font-display font-light text-5xl md:text-6xl leading-[1.05] text-[var(--cream)]">
+        We roast to the curve,<br class="hidden md:block"> not the clock.
+      </h1>
+      <p class="mt-6 text-[var(--muted)] text-base md:text-lg leading-relaxed max-w-md">
+        Every batch is charted live — bean temperature, airflow, and the moment first crack breaks — so the roast matches what the green coffee actually needs, not a fixed recipe.
+      </p>
+      <div class="mt-9 flex items-center gap-5">
+        <a href="#origins" class="font-mono text-xs uppercase tracking-[0.15em] bg-[var(--copper)] text-[var(--bg)] px-6 py-3 rounded-full hover:bg-[var(--cream)] transition-colors">
+          See this week's origins
+        </a>
+        <a href="#process" class="font-mono text-xs uppercase tracking-[0.15em] text-[var(--muted)] hover:text-[var(--cream)] transition-colors">
+          How we roast →
+        </a>
+      </div>
+    </div>
+
+    <!-- Signature: animated roast curve -->
+    <div class="relative">
+      <div class="absolute -inset-6 rounded-3xl bg-gradient-to-br from-[var(--rust)]/10 to-transparent"></div>
+      <div class="relative bg-[var(--surface)] border border-[var(--line)] rounded-2xl p-6 md:p-8">
+        <div class="flex items-center justify-between mb-4">
+          <p class="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--muted)]">Roast log — Lot 0412 · Yirgacheffe</p>
+          <p class="font-mono text-[10px] text-[var(--copper)]">LIVE</p>
+        </div>
+        <svg viewBox="0 0 480 260" class="w-full h-auto" role="img" aria-label="Roast curve chart showing bean temperature rising over roast time, with a marked first crack point">
+          <!-- gridlines -->
+          <g stroke="var(--line)" stroke-width="1">
+            <line x1="0" y1="40" x2="480" y2="40"/>
+            <line x1="0" y1="90" x2="480" y2="90"/>
+            <line x1="0" y1="140" x2="480" y2="140"/>
+            <line x1="0" y1="190" x2="480" y2="190"/>
+            <line x1="0" y1="230" x2="480" y2="230"/>
+          </g>
+          <!-- axis labels -->
+          <text x="4" y="232" font-family="IBM Plex Mono" font-size="9" fill="var(--muted)">0:00</text>
+          <text x="440" y="232" font-family="IBM Plex Mono" font-size="9" fill="var(--muted)">11:30</text>
+
+          <!-- curve -->
+          <path class="curve-path" d="M10,222 C 90,205 140,150 190,110 C 230,80 260,66 300,55 C 340,46 380,40 470,32"
+                fill="none" stroke="var(--copper)" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- first crack marker -->
+          <circle class="dot-anim" style="animation-delay:2.1s" cx="300" cy="55" r="4.5" fill="var(--bg)" stroke="var(--copper)" stroke-width="2"/>
+          <text class="dot-anim" style="animation-delay:2.3s" x="308" y="52" font-family="IBM Plex Mono" font-size="10" fill="var(--cream)">First crack · 9:42</text>
+
+          <!-- drop marker -->
+          <circle class="dot-anim" style="animation-delay:2.6s" cx="470" cy="32" r="4.5" fill="var(--copper)"/>
+          <text class="dot-anim" style="animation-delay:2.7s" x="392" y="24" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">Drop · 205°C</text>
+        </svg>
+        <div class="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-[var(--line)] font-mono text-[10px] text-[var(--muted)]">
+          <div><p class="text-[var(--cream)] text-sm">1:40</p>DRY END</div>
+          <div><p class="text-[var(--cream)] text-sm">9:42</p>FIRST CRACK</div>
+          <div><p class="text-[var(--cream)] text-sm">11:30</p>DROP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORIGINS -->
+<section id="origins" class="px-6 md:px-10 py-24 border-t border-[var(--line)]">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal flex items-end justify-between mb-12 flex-wrap gap-4">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--copper)] mb-3">Current lineup</p>
+        <h2 class="font-display font-light text-3xl md:text-4xl text-[var(--cream)]">Three origins, on the bar this week</h2>
+      </div>
+      <p class="font-mono text-xs text-[var(--muted)] max-w-xs">Sourced direct from cooperatives and washing stations we've visited in person.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-px bg-[var(--line)] rounded-2xl overflow-hidden">
+
+      <article class="reveal bg-[var(--surface)] p-8 flex flex-col">
+        <p class="font-mono text-[10px] text-[var(--muted)] uppercase tracking-[0.15em]">Ethiopia</p>
+        <h3 class="font-display text-2xl text-[var(--cream)] mt-2">Yirgacheffe, Gedeb</h3>
+        <p class="text-sm text-[var(--muted)] mt-4 leading-relaxed flex-1">Washed heirloom varietal, dried on raised beds at 1,950m. Bright and floral, with a tea-like body.</p>
+        <div class="mt-6 pt-4 border-t border-[var(--line)] font-mono text-[11px] text-[var(--copper)] space-y-1">
+          <p>JASMINE · BERGAMOT · STONE FRUIT</p>
+          <p class="text-[var(--muted)]">1,950m · Washed · Light roast</p>
+        </div>
+      </article>
+
+      <article class="reveal bg-[var(--surface)] p-8 flex flex-col" style="transition-delay:0.1s">
+        <p class="font-mono text-[10px] text-[var(--muted)] uppercase tracking-[0.15em]">Colombia</p>
+        <h3 class="font-display text-2xl text-[var(--cream)] mt-2">Huila, El Paraíso</h3>
+        <p class="text-sm text-[var(--muted)] mt-4 leading-relaxed flex-1">Caturra and Castillo, fermented 36 hours in sealed tanks before a double wash. Syrupy and structured.</p>
+        <div class="mt-6 pt-4 border-t border-[var(--line)] font-mono text-[11px] text-[var(--copper)] space-y-1">
+          <p>RED APPLE · BROWN SUGAR · COCOA</p>
+          <p class="text-[var(--muted)]">1,700m · Washed · Medium roast</p>
+        </div>
+      </article>
+
+      <article class="reveal bg-[var(--surface)] p-8 flex flex-col" style="transition-delay:0.2s">
+        <p class="font-mono text-[10px] text-[var(--muted)] uppercase tracking-[0.15em]">Guatemala</p>
+        <h3 class="font-display text-2xl text-[var(--cream)] mt-2">Antigua, La Folie</h3>
+        <p class="text-sm text-[var(--muted)] mt-4 leading-relaxed flex-1">Bourbon grown in volcanic soil under shade cover. Full-bodied with a long, spiced finish.</p>
+        <div class="mt-6 pt-4 border-t border-[var(--line)] font-mono text-[11px] text-[var(--copper)] space-y-1">
+          <p>DARK CHOCOLATE · CLOVE · WALNUT</p>
+          <p class="text-[var(--muted)]">1,550m · Washed · Medium-dark roast</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="px-6 md:px-10 py-24 border-t border-[var(--line)] bg-[var(--surface-2)]/40">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-14">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--copper)] mb-3">Every batch, five stages</p>
+      <h2 class="font-display font-light text-3xl md:text-4xl text-[var(--cream)] max-w-xl">The roast, stage by stage</h2>
+    </div>
+
+    <div class="relative">
+      <div class="hidden md:block absolute top-6 left-0 right-0 h-px bg-[var(--line)]"></div>
+      <div class="grid md:grid-cols-5 gap-8 md:gap-4">
+
+        <div class="reveal relative">
+          <div class="font-mono text-xs text-[var(--copper)] mb-4 bg-[var(--bg)] md:bg-[var(--surface-2)] inline-block pr-3">01 · 0:00</div>
+          <h3 class="font-display text-lg text-[var(--cream)]">Charge</h3>
+          <p class="text-sm text-[var(--muted)] mt-2 leading-relaxed">Green beans drop into a preheated 200°C drum, temperature dips as they absorb heat.</p>
+        </div>
+
+        <div class="reveal relative" style="transition-delay:0.05s">
+          <div class="font-mono text-xs text-[var(--copper)] mb-4 bg-[var(--bg)] md:bg-[var(--surface-2)] inline-block pr-3">02 · 1:40</div>
+          <h3 class="font-display text-lg text-[var(--cream)]">Dry end</h3>
+          <p class="text-sm text-[var(--muted)] mt-2 leading-relaxed">Moisture leaves the bean, it turns from green to a pale straw yellow.</p>
+        </div>
+
+        <div class="reveal relative" style="transition-delay:0.1s">
+          <div class="font-mono text-xs text-[var(--copper)] mb-4 bg-[var(--bg)] md:bg-[var(--surface-2)] inline-block pr-3">03 · 6:15</div>
+          <h3 class="font-display text-lg text-[var(--cream)]">Maillard</h3>
+          <p class="text-sm text-[var(--muted)] mt-2 leading-relaxed">Sugars and amino acids brown the bean, this window builds most of the flavor.</p>
+        </div>
+
+        <div class="reveal relative" style="transition-delay:0.15s">
+          <div class="font-mono text-xs text-[var(--copper)] mb-4 bg-[var(--bg)] md:bg-[var(--surface-2)] inline-block pr-3">04 · 9:42</div>
+          <h3 class="font-display text-lg text-[var(--cream)]">First crack</h3>
+          <p class="text-sm text-[var(--muted)] mt-2 leading-relaxed">Steam pressure splits the bean audibly. We taste and adjust airflow from here on.</p>
+        </div>
+
+        <div class="reveal relative" style="transition-delay:0.2s">
+          <div class="font-mono text-xs text-[var(--copper)] mb-4 bg-[var(--bg)] md:bg-[var(--surface-2)] inline-block pr-3">05 · 11:30</div>
+          <h3 class="font-display text-lg text-[var(--cream)]">Drop &amp; cool</h3>
+          <p class="text-sm text-[var(--muted)] mt-2 leading-relaxed">Beans hit the cooling tray at 205°C and are air-cooled in under 4 minutes.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT / FOOTER -->
+<section id="visit" class="px-6 md:px-10 py-24 border-t border-[var(--line)]">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
+    <div class="reveal">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--copper)] mb-3">Visit the roastery</p>
+      <h2 class="font-display font-light text-3xl md:text-4xl text-[var(--cream)] mb-6">Cups poured Tuesday through Sunday.</h2>
+      <p class="text-[var(--muted)] leading-relaxed max-w-md">Come watch a batch on the drum, cup the week's lots with us, or just take a bag home. The roastery floor is open to anyone who wants to see how the coffee gets made.</p>
+    </div>
+    <div class="reveal font-mono text-sm text-[var(--muted)] space-y-6" style="transition-delay:0.1s">
+      <div>
+        <p class="text-[var(--cream)] mb-1">Address</p>
+        <p>14 Thamel Marg, Kathmandu</p>
+      </div>
+      <div>
+        <p class="text-[var(--cream)] mb-1">Hours</p>
+        <p>Tue–Sun · 07:30–17:00</p>
+      </div>
+      <div>
+        <p class="text-[var(--cream)] mb-1">Wholesale &amp; orders</p>
+        <p>hello@meridianroasting.co</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto mt-20 pt-8 border-t border-[var(--line)] flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="font-display text-[var(--cream)]">MERIDIAN<span class="text-[var(--copper)]">.</span></p>
+    <p class="font-mono text-[10px] text-[var(--muted)] uppercase tracking-[0.15em]">© 2026 Meridian Roasting Co. — Roasted to order, in small batches.</p>
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('in');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
